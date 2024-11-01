@@ -1,0 +1,29 @@
+#cloud-config
+package_reboot_if_required: false
+
+package_update: true
+
+package_upgrade: false
+
+packages:
+  - git 
+  - curl
+  - docker.io 
+
+write_files:
+  - path: /usr/local/bin/docker_mysql_run.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      docker run -d --name db \
+        --restart always \
+        -e MYSQL_DATABASE=mydatabase \
+        -e MYSQL_USER=user \
+        -e MYSQL_PASSWORD=password \
+        -e MYSQL_ROOT_PASSWORD=password \
+        -p 3306:3306 \
+        --volume mysql-db:/var/lib/mysql \
+        mysql:latest
+
+runcmd:
+  - /usr/local/bin/docker_mysql_run.sh

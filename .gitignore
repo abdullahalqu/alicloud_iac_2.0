@@ -1,0 +1,26 @@
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+*.terraform/*
+*.terraform.lock.hcl
+
+# Local .terraform directories
+**/.terraform/
+**/terraform.tfstategti
+**/terraform.tfstate.backup
+**/*.tfstate
+**/*.tfstate.*
+
+# Ignore sensitive files
+*.pem
+*.private
+*.key
+
+# Ignore IDE/editor-specific files
+.idea/
+.vscode/
+*.swp
+*.swo

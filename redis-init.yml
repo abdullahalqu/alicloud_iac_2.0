@@ -1,0 +1,14 @@
+#cloud-config
+package_reboot_if_required: false
+
+package_update: true
+
+package_upgrade: false
+
+packages:
+  - git 
+  - curl
+  - docker.io 
+
+runcmd:
+  - docker run -d --rm -p 6379:6379 --name redis redis:latest
